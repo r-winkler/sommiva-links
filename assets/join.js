@@ -11,11 +11,21 @@
   }
   var link = 'https://sommiva.app/join/' + match[1];
   var label = 'sommiva.app/join/' + match[1];
-  var preferred = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-  var lang = /^de\b/i.test(preferred) ? 'de' : 'en';
+  // First browser language whose primary subtag has a block on the page (fr-CH -> fr), English otherwise.
+  var blocks = document.querySelectorAll('[data-lang]');
+  var available = {};
+  for (var k = 0; k < blocks.length; k++) available[blocks[k].getAttribute('data-lang')] = true;
+  var preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+  var lang = 'en';
+  for (var p = 0; p < preferred.length; p++) {
+    var primary = String(preferred[p] || '').split('-')[0].toLowerCase();
+    if (available[primary]) {
+      lang = primary;
+      break;
+    }
+  }
 
   document.documentElement.lang = lang;
-  var blocks = document.querySelectorAll('[data-lang]');
   for (var i = 0; i < blocks.length; i++) {
     var own = blocks[i].getAttribute('data-lang') === lang;
     blocks[i].hidden = !own;

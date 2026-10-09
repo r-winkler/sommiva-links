@@ -54,6 +54,11 @@ svg{flex-shrink:0}
 .lang ul{position:absolute;inset-inline-end:0;inset-block-start:52px;z-index:5;min-inline-size:180px;background:var(--surface);border-radius:20px;padding:8px;box-shadow:0 10px 30px rgba(10,8,24,0.18)}
 .lang li a{display:flex;align-items:center;min-block-size:44px;padding-inline:14px;border-radius:14px;font-weight:700}
 .lang li a[aria-current]{background:var(--soft)}
+/* Many languages: two columns filled top to bottom (--rows from build_website.py, above six entries); on phones
+   the list never gets wider than the screen and scrolls inside itself instead of the page. */
+.lang ul.cols{display:grid;grid-auto-flow:column;grid-template-rows:repeat(var(--rows),auto);grid-template-columns:repeat(2,minmax(0,1fr));column-gap:4px;inline-size:max-content}
+.lang ul{max-inline-size:calc(100vw - 32px);max-block-size:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain}
+.lang li a{overflow-wrap:break-word}
 
 /* Buttons and badges */
 .stores{display:flex;flex-wrap:wrap;gap:12px}
@@ -181,7 +186,7 @@ h1 span{display:block}
 .toc h2{padding:0 12px 8px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:0}
 .toc a{min-block-size:44px;padding-inline:12px;border-radius:22px;display:flex;align-items:center}
 .doc main{flex:999 1 560px;min-inline-size:0;max-inline-size:760px;display:flex;flex-direction:column;gap:36px}
-.doc h1{font-size:clamp(36px,5vw,56px);line-height:1.05}
+.doc h1{font-size:clamp(36px,5vw,56px);line-height:1.05;hyphens:auto;overflow-wrap:break-word}
 .doc .updated{margin-block-start:8px;font-size:15px;font-weight:700;color:var(--muted)}
 .doc section{padding:0;display:flex;flex-direction:column;gap:10px;scroll-margin-block-start:24px}
 .doc section h2{font-size:26px;font-weight:900;letter-spacing:0}
