@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ch.rewiso.sommiva",
+      "sha256_cert_fingerprints": [
+        "39:E0:97:0C:E2:BF:9C:4C:D7:F6:1D:CF:1B:3B:00:31:18:87:E3:F2:5F:E9:26:DB:30:5F:2F:26:50:D7:CE:10",
+        "5E:DF:B2:ED:C9:6C:BA:BB:A3:6B:C5:9E:64:C6:CD:3C:DF:27:8B:2C:B3:55:9F:93:BD:B1:A7:61:7E:62:5A:AE"
+      ]
+    }
+  }
+]

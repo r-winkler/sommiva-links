@@ -1,0 +1,31 @@
+/* Invitation page on sommiva.app (design/prototype/WebBeitreten.dc.html). Builds on site.css. */
+.join-main{padding-block:32px 64px}
+.join-main .wrap{max-width:880px;display:grid;gap:24px}
+.join-lang{display:grid;gap:24px}
+.join-lang:not([hidden])+.join-lang:not([hidden]){border-block-start:2px solid var(--line);padding-block-start:32px}
+.join-lang[hidden]{display:none}
+.join-hero{background:var(--surface);border-radius:28px;padding:32px;display:grid;gap:14px;justify-items:start}
+.join-hero svg{color:var(--ink)}
+.join-hero h1{font-size:clamp(28px,5vw,40px);line-height:1.15;font-weight:900}
+.join-open{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding-inline:28px;border-radius:999px;background:var(--primary);color:var(--on-primary);font-weight:900;font-size:18px}
+.join-open:hover{text-decoration:none;filter:brightness(1.08)}
+.join-grid{display:grid;gap:24px;grid-template-columns:1fr}
+@media (min-width:760px){.join-grid{grid-template-columns:3fr 2fr}}
+.join-steps{background:var(--surface);border-radius:28px;padding:28px;display:grid;gap:18px;align-content:start}
+.join-steps h2{font-size:24px}
+.join-steps ol{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.join-steps li{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start}
+.join-num{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--soft);font-weight:900}
+.join-steps strong{display:block;font-weight:800;margin-block-end:6px}
+.join-steps .stores{margin-block-start:10px}
+.join-link{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-block-start:12px;padding:10px 12px;border:2px solid var(--line);border-radius:16px}
+.join-link[hidden]{display:none}
+.join-link code{font:inherit;font-weight:800;overflow-wrap:anywhere;direction:ltr;unicode-bidi:isolate;flex:1 1 200px}
+.join-copy{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding-inline:16px;border:0;border-radius:999px;background:var(--btn);color:var(--btn-text);font:inherit;font-weight:800;cursor:pointer}
+.join-qr{display:none}
+@media (min-width:760px){
+  .join-qr:not([hidden]){display:grid;gap:16px;align-content:start;justify-items:center;text-align:center;background:var(--surface);border-radius:28px;padding:28px}
+}
+.join-qr-code{width:200px;height:200px;padding:12px;background:#FFFFFF;border-radius:16px}
+.join-qr-code svg{width:100%;height:100%;display:block}
+.join-footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding-block:24px}
