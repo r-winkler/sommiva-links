@@ -19,9 +19,23 @@
   for (var k = 0; k < blocks.length; k++) available[blocks[k].getAttribute('data-lang')] = true;
   var preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
   var lang = 'en';
+  // Chinese: the script subtag decides (zh-Hant, zh-Hans), else the region (TW, HK, MO traditional; any other or
+  // none simplified).
+  var chinese = function (parts) {
+    var region = '';
+    for (var s = 1; s < parts.length; s++) {
+      var sub = parts[s].toLowerCase();
+      if (sub === 'hant') return 'zh-Hant';
+      if (sub === 'hans') return 'zh-Hans';
+      if (!region && /^([a-z]{2}|[0-9]{3})$/.test(sub)) region = sub;
+    }
+    return /^(tw|hk|mo)$/.test(region) ? 'zh-Hant' : 'zh-Hans';
+  };
   for (var p = 0; p < preferred.length; p++) {
-    var primary = String(preferred[p] || '').split('-')[0].toLowerCase();
+    var parts = String(preferred[p] || '').split(/[-_]/);
+    var primary = parts[0].toLowerCase();
     if (Object.prototype.hasOwnProperty.call(aliases, primary)) primary = aliases[primary];
+    if (primary === 'zh') primary = chinese(parts);
     if (available[primary]) {
       lang = primary;
       break;
