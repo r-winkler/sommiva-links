@@ -11,7 +11,9 @@
   }
   var link = 'https://sommiva.app/join/' + match[1];
   var label = 'sommiva.app/join/' + match[1];
-  // First browser language whose primary subtag has a block on the page (fr-CH -> fr), English otherwise.
+  // First browser language whose primary subtag has a block on the page (fr-CH -> fr, pt-PT -> pt), English otherwise.
+  // Old Android browsers report Indonesian with the retired code "in".
+  var aliases = { 'in': 'id' };
   var blocks = document.querySelectorAll('[data-lang]');
   var available = {};
   for (var k = 0; k < blocks.length; k++) available[blocks[k].getAttribute('data-lang')] = true;
@@ -19,6 +21,7 @@
   var lang = 'en';
   for (var p = 0; p < preferred.length; p++) {
     var primary = String(preferred[p] || '').split('-')[0].toLowerCase();
+    if (Object.prototype.hasOwnProperty.call(aliases, primary)) primary = aliases[primary];
     if (available[primary]) {
       lang = primary;
       break;
