@@ -12,8 +12,11 @@
   var link = 'https://sommiva.app/join/' + match[1];
   var label = 'sommiva.app/join/' + match[1];
   // First browser language whose primary subtag has a block on the page (fr-CH -> fr, pt-PT -> pt), English otherwise.
-  // Old Android browsers report Indonesian with the retired code "in". Norwegian (no) and Nynorsk (nn) get Bokmål.
-  var aliases = { 'in': 'id', 'no': 'nb', 'nn': 'nb' };
+  // Old Android browsers report Indonesian with the retired code "in" and Hebrew with "iw". Norwegian (no) and
+  // Nynorsk (nn) get Bokmål.
+  var aliases = { 'in': 'id', 'iw': 'he', 'no': 'nb', 'nn': 'nb' };
+  // Right-to-left languages: the page mirrors (dir on <html>); link and QR code stay left to right (join.css).
+  var rtl = { 'ar': true, 'he': true, 'fa': true };
   var blocks = document.querySelectorAll('[data-lang]');
   var available = {};
   for (var k = 0; k < blocks.length; k++) available[blocks[k].getAttribute('data-lang')] = true;
@@ -43,6 +46,7 @@
   }
 
   document.documentElement.lang = lang;
+  document.documentElement.dir = rtl[lang] ? 'rtl' : 'ltr';
   for (var i = 0; i < blocks.length; i++) {
     var own = blocks[i].getAttribute('data-lang') === lang;
     blocks[i].hidden = !own;

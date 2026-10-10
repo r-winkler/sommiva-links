@@ -28,4 +28,6 @@
 }
 .join-qr-code{width:200px;height:200px;padding:12px;background:#FFFFFF;border-radius:16px}
 .join-qr-code svg{width:100%;height:100%;display:block}
+/* Right-to-left blocks (ar, he, fa): the page mirrors, the link (.join-link code) and the QR code stay left to right. */
+.join-qr-code{direction:ltr}
 .join-footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding-block:24px}
